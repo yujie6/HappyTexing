@@ -1,0 +1,93 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage{ebgaramond}
+\fontfamily{ebgaramond}
+\usepackage{textcomp}
+\usepackage{theorem}
+\theoremstyle{plain}
+\theorembodyfont{\normalfont}
+\usepackage[many]{tcolorbox}
+\usepackage[dutch]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage[headheight=12pt]{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=3cm,bottom=3cm}
+\usepackage{fancyhdr}
+\fancypagestyle{mainFancy}{
+    \fancyhf{}
+    %\renewcommand\headrulewidth{0pt}       % 页眉横线
+    %\renewcommand\footrulewidth{0pt}
+    
+    \fancyhead[L]{Mathematical Logic}       % 页眉章标题
+    \fancyhead[R]{\leftmark}         % 页眉文章题目
+    \fancyfoot[C]{\thepage}                 % 页眉编号
+}
+\pagestyle{mainFancy}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{pro}{Problem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{defi}{Definition}[section]
+\newtheorem{li}{Example}[section]
+\tcolorboxenvironment{pro}{
+  enhanced,
+  borderline={0.4pt}{0.4pt}{black},
+  boxrule=0.4pt,
+  colback=white,
+  coltitle=black,
+  sharp corners,
+}
+\tcolorboxenvironment{defi}{
+  enhanced,
+  borderline={0.4pt}{0.4pt}{black},
+  boxrule=0.4pt,
+  colback=white,
+  coltitle=black,
+  sharp corners,
+}
+
+% Add \contra symbol to denote contradiction
+\usepackage{stmaryrd} 
+\newcommand\contra{\scalebox{1.5}{$\lightning$}}
+
+
+% Command for short corrections
+% Usage: 1+1=\correct{3}{2}
+
+\definecolor{correct}{HTML}{009900}
+\newcommand\correct[2]{\ensuremath{\:}{\color{red}{#1}}\ensuremath{\to }{\color{correct}{#2}}\ensuremath{\:}}
+\newcommand\green[1]{{\color{correct}{#1}}}
+
+% horizontal rule
+\newcommand\hr{
+    \noindent\rule[0.5ex]{\linewidth}{0.5pt}
+}
+
+% hide parts
+\newcommand\hide[1]{}
+
+\newenvironment{proof}{\paragraph{Proof:}}{\hfill$\square$}
+\newenvironment{jie}{\paragraph{Show:}}{\hfill$\square$}
+
+\def\mf(#1){\mathfrak{#1}} 
+\def\setn(#1,#2){\left\{#1_1,#1_2,\cdots, #1_#2 \right\}  }
+
+
+\let\implies\Rightarrow
+\let\impliedby\Leftarrow
+\let\iff\Leftrightarrow
+\let\ldots\cdots
+
+
+
+\newcommand\dif{\,\mathrm{d}}
+\newcommand\e{\,\mathrm{e}}
+\newcommand\R{\,\mathbb{R}}
+\newcommand\Q{\,\mathbb{Q}}
+\newcommand\C{\,\mathbb{C}}
+\newcommand\N{\,\mathbb{N}}
+\newcommand\A{\,\mathbb{A}}
+\newcommand\Z{\,\mathbb{Z}}
+\newcommand\ep{\,\varepsilon}
+\newcommand\T{\,\mathbb{T}}
+\newcommand\HH{\,\mathbb{H}}
+\author{yujie6@sjtu.edu.cn\footnote{Yujie Lu, ACM class 18, ID is 518030910111}}
