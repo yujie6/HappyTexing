@@ -1,7 +1,7 @@
 # HappyTexing
 # A collection of tools to boost the speed of latex coding.
 
-* <a href="./README.md">中文版</a>
+* <a href="./README_zh.md">中文版</a>
 
 <img src="./texenv.png" alt="">
 
