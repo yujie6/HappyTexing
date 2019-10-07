@@ -19,7 +19,7 @@ else
 fi
 
 echo "[3/7] Configuring zathura..."
-
+#mv ./zathura.rc $HOME/.config
 
 echo "[4/7] Adding 5 plugins to your vim-plug install list, it may take several seconds...."
 echo "Do you want your .vimrc to be replaced by the one in the repo?" 
@@ -69,6 +69,22 @@ esac
 source 2>/dev/null ~/.vimrc
 
 echo "[5/7] Installing Inkscape..."
+echo "Inkscape is a powerful svg drawing tool, it can also draw with latex"
+echo "With shortcut manager we can draw good figures very quick"
+echo "This part is optional, are you sure want download this?"
+read dd
+case $dd in
+         Y | y)
+			cd $HOME/Documents
+			#sudo apt install inkscape
+			#pip3 install inkscape-figures
+			#git clone https://github.com/gillescastel/inkscape-shortcut-manager.git
+			;;
+		 n | N)
+			echo "That's ok, let's move on";;
+		 *)
+			echo	"error choice"	;;
+esac
 
 echo "[6/7] Moving tex.snippet to the directory"
 if [ -e $HOME/.vim/UltiSnips ]
