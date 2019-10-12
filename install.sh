@@ -1,27 +1,24 @@
-echo "Happytexing start"
 echo "[1/7] Downloading vim-plug..."
 
 if [ -e $HOME/.vim/autoload/plug.vim ]
 then
-		echo "Nice! You already got vim-plug."
+		echo "You already got vim-plug."
 else
-    	echo "Progress start, it may take 60 seconds..."
+   		curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
-# curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-#     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 echo "[2/7] Installing zathura..."
 if [ 3 -le $(apt list 2>/dev/null | grep zathura | wc -l ) ]
 then
-        echo "Nice! You already got zathura."
+        echo "You already got zathura."
 else
-        echo "Progress start, it may take several seconds..."
- 		# sudo apt install zathura
+ 		sudo apt install zathura
 fi
 
 echo "[3/7] Configuring zathura..."
-#mv ./zathura.rc $HOME/.config
+mv ./zathurarc $HOME/.config
 
-echo "[4/7] Adding 5 plugins to your vim-plug install list, it may take several seconds...."
+echo "[4/7] Adding 5 plugins to your vim-plug"
 echo "Do you want your .vimrc to be replaced by the one in the repo?" 
 echo "Input y or n"
 read name
@@ -29,8 +26,7 @@ case $name in
 		Y | y)
 			if [ -e $HOME/.vimrc ] 
 			then
-				#cat << EOF >> $HOME/.vimrc
-				cat << EOF >> ./tmp.txt
+				cat << EOF >> $HOME/.vimrc
 call plug#begin('~/.vim/plugged')
 Plug 'lervag/vimtex'
 let g:tex_flavor='latex'
@@ -54,13 +50,11 @@ call plug#end()
 EOF
 			else 
 				echo "oh it seems like you didn't got .vimrc?"
-				echo "Let me help you with that!"
-				#cp ./.vimrc $HOME
+				cp ./.vimrc $HOME
 			fi;;
 
 		n | N)
-			echo "Copying .vimrc to $HOME...";;
-			#cp ./.vimrc $HOME	
+			echo ;;
 		*)
 			echo "error choice";;
 esac
@@ -71,14 +65,14 @@ source 2>/dev/null ~/.vimrc
 echo "[5/7] Installing Inkscape..."
 echo "Inkscape is a powerful svg drawing tool, it can also draw with latex"
 echo "With shortcut manager we can draw good figures very quick"
-echo "This part is optional, are you sure want download this?"
+echo "This part is optional, type 'y,n' to decide install or not"
 read dd
 case $dd in
          Y | y)
 			cd $HOME/Documents
-			#sudo apt install inkscape
-			#pip3 install inkscape-figures
-			#git clone https://github.com/gillescastel/inkscape-shortcut-manager.git
+			sudo apt install inkscape
+			pip3 install inkscape-figures
+			git clone https://github.com/gillescastel/inkscape-shortcut-manager.git
 			;;
 		 n | N)
 			echo "That's ok, let's move on";;
@@ -89,12 +83,10 @@ esac
 echo "[6/7] Moving tex.snippet to the directory"
 if [ -e $HOME/.vim/UltiSnips ]
 then
-		echo "moving tex.snippets to the right place..."
-		#cp ./tex.snippets $HOME/.vim/UltiSnips
+		cp ./tex.snippets $HOME/.vim/UltiSnips
 else 
-		echo "moving tex.snippets to the right place..."
-		#mkdir -p $HOME/.vim/UltiSnips
-		#cp ./tex.snippets $HOME/.vim/UltiSnips
+		mkdir -p $HOME/.vim/UltiSnips
+		cp ./tex.snippets $HOME/.vim/UltiSnips
 fi
  
 
@@ -102,7 +94,7 @@ echo "[7/7] Install them manually"
 echo "Hey, it's almost done now. But there is one more thing to do "
 echo "manually. Open vim and type <:PlugInstall PlugName> to install"
 echo "For example: <:PlugInstall vimtex>."
-echo "Then you can have a good texing"
+echo "Then you can have a good time texing"
 
 
 
