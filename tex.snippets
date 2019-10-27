@@ -37,14 +37,6 @@ snippet template "Basic template" b
 \newtheorem{defi}{Definition}[subsection]
 \newtheorem{li}{Example}[subsection]
 \newenvironment{proof}{\paragraph{Proof:}}{\hfill$\square$}
-\tcolorboxenvironment{pro}{
-  enhanced,
-  borderline={0.4pt}{0.4pt}{black},
-  boxrule=0.4pt,
-  colback=white,
-  coltitle=black,
-  sharp corners,
-}
 \newcommand\dif{\,\mathrm{d}}
 \newcommand\e{\,\mathrm{e}}
 \newcommand\R{\,\mathbb{R}}
@@ -53,7 +45,6 @@ snippet template "Basic template" b
     \def\svgwidth{\columnwidth}
     \import{./figures/}{#1.pdf_tex}
 }
-\pdfsuppresswarningpagegroup=1
 \author{yujie6@sjtu.edu.cn}
 \title{Title}
 
@@ -69,11 +60,6 @@ snippet beg "begin{} / end{}" bA
 \\end{$1}
 endsnippet
 
-snippet bf "textbf{} " bA
-\textbf{$1} $0
-endsnippet
-
-
 priority 100
 snippet ... "ldots" iA
 \ldots
@@ -88,6 +74,23 @@ snippet table "Table environment" b
 	$0${5/((?<=.)c|l|r)|./(?1: & )/g}
 	\end{tabular}
 \end{table}
+endsnippet
+
+snippet mini "Minipage" b
+\begin{figure} [${1:htpb}]
+	\begin{minipage}[t]{0.5\linewidth} 
+		\centering 
+		\includegraphics[width=0.8\linewidth]{$2} 
+		\caption{} 
+		\label{fig:$3} 
+	\end{minipage} 
+	\begin{minipage}[t]{0.5\linewidth} 
+		\centering 
+		\includegraphics[width=0.8\linewidth]{$4}
+		\caption{} 
+		\label{fig:$5} 
+	\end{minipage}
+\end{figure}
 endsnippet
 
 snippet fig "Figure environment" b
@@ -127,6 +130,18 @@ endsnippet
 
 snippet mf "\mathfrak{}" Ai
 \mf($1) $0
+endsnippet
+
+snippet bb "\mathbb{}" Ai
+\mathbb{$1} $0
+endsnippet
+
+snippet bf "\textbf{}" wA
+\textbf{$1} $0
+endsnippet
+
+snippet ita "\textit{}" wA
+\textit{$1} $0
 endsnippet
 
 snippet =< "implied by" Ai
@@ -232,10 +247,17 @@ snip.rv = subprocess.check_output(['wolframscript', '-code', code])
 `
 endsnippet
 
+context "math()"
 snippet == "equals" iA
 &= $1 \\\\
 endsnippet
 
+context "math()"
+snippet -= "equiv" iA
+\equiv $0
+endsnippet
+
+context "math()"
 snippet != "equals" iA
 \neq 
 endsnippet
@@ -261,6 +283,21 @@ endsnippet
 context "math()"
 snippet () "left( right)" iA
 \left( ${1:${VISUAL}} \right) $0
+endsnippet
+
+context "math()"
+snippet bol "mb{}" iA
+\bm{$1}$0
+endsnippet
+
+context "math()"
+snippet op "oplus" iA
+\oplus
+endsnippet
+
+context "math()"
+snippet oti "otimes" iA
+\otimes
 endsnippet
 
 snippet lr "left( right)" i
@@ -474,14 +511,6 @@ snippet xx "cross" iA
 endsnippet
 
 priority 100
-# snippet * "cdot" iA
-# \cdot 
-# endsnippet
-
-# priority 200
-# snippet '\cdot *' "cdot" iA
-# *
-# endsnippet
 
 context "math()"
 snippet norm "norm" iA
@@ -518,7 +547,7 @@ snippet !> "mapsto" iA
 endsnippet
 
 context "math()"
-snippet invs "inverse" iA
+snippet vv "inverse" iA
 ^{-1}
 endsnippet
 
@@ -655,6 +684,16 @@ snippet "bar" "bar" riA
 \overline{$1}$0
 endsnippet
 
+context "math()"
+snippet |= "models" iA
+\models $0
+endsnippet
+
+context "math()"
+snippet |- "vdash" iA
+\vdash $0
+endsnippet
+
 priority 100
 context "math()"
 snippet "([a-zA-Z])bar" "bar" riA
@@ -673,8 +712,8 @@ snippet "([a-zA-Z])hat" "hat" riA
 \hat{`!p snip.rv=match.group(1)`}
 endsnippet
 
-snippet letw "let omega" iA
-Let $\Omega \subset \C$ be open.
-endsnippet
+#snippet letw "let omega" iA
+#Let $\Omega \subset \C$ be open.
+#endsnippet
 
 # vim:ft=snippets
