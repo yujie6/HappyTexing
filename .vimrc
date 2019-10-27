@@ -8,6 +8,15 @@ let g:vimtex_quickfix_mode=0
 set conceallevel=1
 let g:tex_conceal='abdmg'
 Plug 'sirver/ultisnips'
+let g:vimtex_compiler_latexmk = {
+        \ 'background' : 1,
+        \ 'continuous' : 1,
+        \ 'build_dir' : '.',
+        \ 'executable' : 'latexmk',
+        \ 'options' : [
+        \   '-xelatex',
+        \ ],
+        \}
 Plug 'drewtempelmeyer/palenight.vim'
 let g:UltiSnipsSnippetDirectories=['UltiSnips']
 let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'

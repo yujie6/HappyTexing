@@ -23,12 +23,46 @@ Vimtex 集成了 `latexmk`, 一个可以实时编译的tex工具（texlive自带
 * `\le` 查看报错.
 * `:nn` 查看所有相关的命令.
 
+除此之外你还可以在`.vimrc`中自定义`latexmk`的编译选项。
+```
+let g:vimtex_compiler_latexmk = {
+        \ 'background' : 1,
+        \ 'continuous' : 1,
+        \ 'build_dir' : '.',
+        \ 'executable' : 'latexmk',
+        \ 'options' : [
+        \   '-xelatex',
+        \ ],
+        \}
+```
 
 ### 1.2 UltiSnips
 
 这是提速的核心. 我强烈推荐安装这个vim插件来加速latex的编辑. 
 你可以查看 <a href="https://castel.dev/post/lecture-notes-1/">这个博客</a> 窥见他有多么的方便。
 
+`tex.snippets`文件里继承了所有编辑`tex`文件时使用的snippet，你也可以自己编写snippet，格式如下
+```
+snippet 触发字符 "代码片段说明" [参数]
+代码片段内容
+endsnippet
+```
+主要参数有
+* b 表示触发字符应该在一行的开始
+* i 表示触发字符可以在单词内（连续展示会使用这个选项）
+* w 表示触发字符的前后必须是一个字母分界点
+* r 表示触发字符可以是一个正则表达式
+* t 表示展开的代码片段中如果有制表符，原样输出，即使你的 vimrc 里面设置了 expandtab
+* m 表示删除代码片段右边的所有空白字符
+* e 表示自定义上下文
+* A 表示自动触发，不需要按 tab，类似于 VIM 中的 abbr
+
+除了自动展开这一功能，`Ultisnips`还支持`python`和`shell`。例如
+```
+snippet today
+Today is the `date`.
+endsnippet
+```
 ### 1.3 preamble.tex
 这是一个保存自定义命令和宏的头文件.
 
@@ -37,7 +71,7 @@ Vimtex 集成了 `latexmk`, 一个可以实时编译的tex工具（texlive自带
 编辑中文最好使用 `\documentclass{ctexart}`. 并且将 `xelatex`作为你的编译器。
 为了能够在latexmk中使用`xelatex`, 只需添加  
 
-    $pdflatex="xelatex %O %S";
+    $pdflatex="xelatex";
 
 到`$HOME/latexmkrc`.
 ## 2. 编辑环境美化
@@ -62,5 +96,6 @@ Zathura 是一个轻量级的 pdf 查看器，他有着和vim差不多的快捷�
 <img src="./figures/inkscape.png" alt="">
 这个软件需要一些学习成本，而且可能并不是每个人都需要作图，所以下载与否需要考虑一下。
 ## 4. 致谢
-非常感谢 <a href="https://github.com/gillescastel">Gilles Castel</a>的博客. 
-我拜读了他的几篇博客感觉醍醐灌顶。这真的帮我省了很多时间。
+非常感谢 <a href="https://github.com/gillescastel">Gilles Castel</a>的博客。
+我拜读了他的几篇博客感觉醍醐灌顶，这真的帮我省了很多时间。如果你有使用起来比较方便的工具或者
+宏，欢迎提交pull request。
