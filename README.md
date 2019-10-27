@@ -1,5 +1,5 @@
 # HappyTexing
-# 大幅加速latex编辑的工具集
+# 大幅加速LaTeX编辑的工具集
 
 * <a href="./README.md">English version</a>
 
@@ -23,7 +23,7 @@ Vimtex 集成了 `latexmk`, 一个可以实时编译的tex工具（texlive自带
 * `\le` 查看报错.
 * `:nn` 查看所有相关的命令.
 
-除此之外你还可以在`.vimrc`中自定义`latexmk`的编译选项。
+除此之外你还可以在`.vimrc`中自定义`latexmk`的编译选项。例如
 ```
 let g:vimtex_compiler_latexmk = {
         \ 'background' : 1,
@@ -41,7 +41,7 @@ let g:vimtex_compiler_latexmk = {
 这是提速的核心. 我强烈推荐安装这个vim插件来加速latex的编辑. 
 你可以查看 <a href="https://castel.dev/post/lecture-notes-1/">这个博客</a> 窥见他有多么的方便。
 
-`tex.snippets`文件里继承了所有编辑`tex`文件时使用的snippet，你也可以自己编写snippet，格式如下
+`tex.snippets`文件里集成了所有编辑`tex`文件时使用的snippet，你也可以自己编写snippet，格式如下
 ```
 snippet 触发字符 "代码片段说明" [参数]
 代码片段内容
@@ -73,7 +73,7 @@ endsnippet
 
     $pdflatex="xelatex";
 
-到`$HOME/latexmkrc`.
+到`$HOME/.latexmkrc`.
 ## 2. 编辑环境美化
 ### 2.1 Zathura
 Zathura 是一个轻量级的 pdf 查看器，他有着和vim差不多的快捷键. 你可以通过
